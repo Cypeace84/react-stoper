@@ -4,31 +4,49 @@ import FormattedTime from './Components/FormattedTime/FormattedTime';
 
 const App = () => {
   const [time, setTime] = useState(0);
-  const [interval, setInterval] = useState(null);
+  const [timer, setTimer] = useState();
 
-  console.log(time, setTime);
-  console.log(interval, setInterval);
+  // const timer = (time) => {
+  //   setTime((prevValue) => prevValue + 1);
+  // };
+
+  const start = () => {
+    setTimer(
+      setInterval(() => {
+        setTime((prevValue) => prevValue + 1);
+      }, 1)
+    );
+  };
+  const startStoper = (e) => {
+    e.preventDefault();
+    start();
+
+    console.log('klik');
+    console.log(time, setTime);
+    console.log('timery', timer, setTimer);
+  };
+
+  const stop = (e) => {
+    e.preventDefault();
+    clearInterval(timer);
+  };
+
+  const reset = (e) => {
+    e.preventDefault();
+    clearInterval(timer);
+    setTime(0);
+  };
   return (
     <div>
       <FormattedTime time={time} />
-      <Button>Start</Button>
-      <Button>Stop</Button>
-      <Button>Reset</Button>
+      <button onClick={startStoper}>START</button>
+      {/* <Button onClick={startStoper}>Start</Button> */}
+      <button onClick={stop}>STOP</button>
+      {/* <Button onClick={stop}>Stop</Button> */}
+      <button onClick={reset}>RESET</button>
+      {/* <Button>Reset</Button> */}
     </div>
   );
 };
 
 export default App;
-
-// function msToTime(duration) {
-//   var milliseconds = parseInt((duration%1000)/10)
-//       , seconds = parseInt((duration/1000)%60)
-//       , minutes = parseInt((duration/(1000*60))%60)
-//       , hours = parseInt((duration/(1000*60*60))%24);
-
-//   hours = (hours < 10) ? "0" + hours : hours;
-//   minutes = (minutes < 10) ? "0" + minutes : minutes;
-//   seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-//   return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
-// }
