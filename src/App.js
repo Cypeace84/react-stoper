@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import Button from './Components/Button/Button';
+import Container from './Components/Container/Container';
 import FormattedTime from './Components/FormattedTime/FormattedTime';
 
 const App = () => {
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState();
-
-  // const timer = (time) => {
-  //   setTime((prevValue) => prevValue + 1);
-  // };
 
   const start = () => {
     setTimer(
@@ -17,13 +14,14 @@ const App = () => {
       }, 1)
     );
   };
+
   const startStoper = (e) => {
     e.preventDefault();
     start();
 
     console.log('klik');
     console.log(time, setTime);
-    console.log('timery', timer, setTimer);
+    console.log('timer', timer);
   };
 
   const stop = (e) => {
@@ -37,15 +35,15 @@ const App = () => {
     setTime(0);
   };
   return (
-    <div>
+    <Container>
       <FormattedTime time={time} />
-      <button onClick={startStoper}>START</button>
-      {/* <Button onClick={startStoper}>Start</Button> */}
-      <button onClick={stop}>STOP</button>
-      {/* <Button onClick={stop}>Stop</Button> */}
-      <button onClick={reset}>RESET</button>
-      {/* <Button>Reset</Button> */}
-    </div>
+      {/* <button onClick={startStoper}>START</button> */}
+      <Button onClick={startStoper}>START</Button>
+      {/* <button onClick={stop}>STOP</button> */}
+      <Button onClick={stop}>STOP</Button>
+      {/* <button onClick={reset}>RESET</button> */}
+      <Button onClick={reset}>RESET</Button>
+    </Container>
   );
 };
 
