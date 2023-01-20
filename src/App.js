@@ -8,6 +8,7 @@ const App = () => {
   const [timer, setTimer] = useState();
 
   const start = () => {
+    clearInterval(timer);
     setTimer(
       setInterval(() => {
         setTime((prevValue) => prevValue + 1);
@@ -27,12 +28,14 @@ const App = () => {
   const stop = (e) => {
     e.preventDefault();
     clearInterval(timer);
+    console.log('klikSTOP');
   };
 
   const reset = (e) => {
     e.preventDefault();
     clearInterval(timer);
     setTime(0);
+    console.log('klikRESET');
   };
   return (
     <Container>
